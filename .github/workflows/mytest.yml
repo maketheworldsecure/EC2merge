@@ -1,0 +1,30 @@
+name: Sync EC2 Repo to GitHub
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when changes are pushed to the 'main' branch of the EC2 repository
+
+jobs:
+  sync-repo:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      
+      - name: Pull from EC2
+        run: |
+          git remote add ec2 ssh://ec2-user@13.239.43.88:/path/to/your/repo.git
+          git pull ec2 main --allow-unrelated-histories
+      
+      - name: Push to GitHub
+        run: |
+          git push origin main
