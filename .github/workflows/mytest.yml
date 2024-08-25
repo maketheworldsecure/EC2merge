@@ -22,7 +22,7 @@ jobs:
       
       - name: Pull from EC2
         run: |
-          git remote add ec2 ssh://ec2-user@13.239.43.88:/path/to/your/repo.git
+          git remote add ec2 ssh://ec2-user@13.239.43.88:/home/ec2-user/myrepo
           git pull ec2 main --allow-unrelated-histories
       
       - name: Push to GitHub
