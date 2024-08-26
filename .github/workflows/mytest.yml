@@ -15,6 +15,7 @@ jobs:
       
       - name: Configure SSH
         run: |
+          echo "${{ secrets.MY_KEY }}"
           eval "$(ssh-agent -s)"
           mkdir -p ~/.ssh
           echo "${{ secrets.MY_KEY }}"
