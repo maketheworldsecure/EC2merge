@@ -15,18 +15,16 @@ jobs:
       
       - name: Configure SSH
         run: |
-          echo "${{ secrets.MY_KEY }}"
           eval "$(ssh-agent -s)"
           mkdir -p ~/.ssh
-          echo "${{ secrets.MY_KEY }}"
           echo "${{ secrets.MY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 13.211.205.121 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 3.25.97.104 >> ~/.ssh/known_hosts
           ls -la
       
       - name: Pull from EC2merge
         run: |
-          git remote add EC2merge ssh://ec2-user@13.211.205.121:/home/ec2-user/EC2merge
+          git remote add EC2merge ssh://ec2-user@3.25.97.104:/home/ec2-user/EC2merge
           git pull EC2merge main --allow-unrelated-histories
       
       - name: Push to GitHub
