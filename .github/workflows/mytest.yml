@@ -25,7 +25,7 @@ jobs:
       - name: Pull from EC2merge
         run: |
           git remote add EC2merge ssh://ec2-user@3.25.97.104:/home/ec2-user/EC2merge
-          git config pull.rebase true
+          git rebase --skip
           git pull EC2merge main --allow-unrelated-histories
       
       - name: Push to GitHub
