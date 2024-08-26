@@ -16,13 +16,13 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.Deepak }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.MY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 13.239.43.88 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 13.211.205.121 >> ~/.ssh/known_hosts
       
       - name: Pull from EC2
         run: |
-          git remote add ec2 ssh://ec2-user@13.239.43.88:/home/ec2-user/myrepo
+          git remote add ec2 ssh://ec2-user@13.211.205.121:/home/ec2-user/myrepo
           git pull ec2 main --allow-unrelated-histories
       
       - name: Push to GitHub
