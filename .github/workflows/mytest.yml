@@ -17,6 +17,7 @@ jobs:
         run: |
           eval "$(ssh-agent -s)"
           mkdir -p ~/.ssh
+          echo "${{ secrets.MY_KEY }}"
           echo "${{ secrets.MY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 13.211.205.121 >> ~/.ssh/known_hosts
