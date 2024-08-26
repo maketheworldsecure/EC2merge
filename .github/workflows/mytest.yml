@@ -22,10 +22,10 @@ jobs:
           ssh-keyscan -H 13.211.205.121 >> ~/.ssh/known_hosts
           ls -la
       
-      - name: Pull from EC2
+      - name: Pull from EC2merge
         run: |
           git remote add EC2merge ssh://ec2-user@13.211.205.121:/home/ec2-user/EC2merge
-          git pull ec2 main --allow-unrelated-histories
+          git pull EC2merge main --allow-unrelated-histories
       
       - name: Push to GitHub
         run: |
